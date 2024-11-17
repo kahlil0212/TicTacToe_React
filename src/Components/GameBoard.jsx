@@ -10,21 +10,21 @@ const initialGameBoard = new Array(3).fill(null).map( (row) => row = new Array(3
 
 // ];
 
-function GameBoard({ onSelectSquare, activePlayerSymbol }){
+function GameBoard({ onSelectSquare }){
 
-    const [gameBoard, setGameBoard] = useState(initialGameBoard);
+    // const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
-    function playerMoveHandler(rowIdx, colIdx){
-        setGameBoard((prevGameBoard) => {
-            //When updating object or array, it is reference based and needs a copy of the prev object. Mimics immutability for data safety
-            const updatedBoard = [...prevGameBoard.map(prevRow => [...prevRow])];
-            updatedBoard[rowIdx][colIdx] = activePlayerSymbol;
+    // function playerMoveHandler(rowIdx, colIdx){
+    //     setGameBoard((prevGameBoard) => {
+    //         //When updating object or array, it is reference based and needs a copy of the prev object. Mimics immutability for data safety
+    //         const updatedBoard = [...prevGameBoard.map(prevRow => [...prevRow])];
+    //         updatedBoard[rowIdx][colIdx] = activePlayerSymbol;
 
-            return updatedBoard;
-        });
+    //         return updatedBoard;
+    //     });
 
-        onSelectSquare();
-    }
+    //     onSelectSquare();
+    // }
 
     return (
         <ol id="game-board">
@@ -32,7 +32,7 @@ function GameBoard({ onSelectSquare, activePlayerSymbol }){
                 <ol>
                     {row.map((playerSymbol, colIndex) => 
                     <li key={colIndex}>
-                        <button onClick={() => playerMoveHandler(rowIndex, colIndex)}>{playerSymbol}</button>
+                        <button onClick={onSelectSquare}>{playerSymbol}</button>
                     </li>
                         )}
                 </ol>
