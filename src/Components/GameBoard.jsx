@@ -10,7 +10,7 @@ const initialGameBoard = new Array(3).fill(null).map( (row) => row = new Array(3
 
 // ];
 
-function GameBoard(){
+function GameBoard({ onSelectSquare, activePlayerSymbol }){
 
     const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
@@ -18,10 +18,12 @@ function GameBoard(){
         setGameBoard((prevGameBoard) => {
             //When updating object or array, it is reference based and needs a copy of the prev object. Mimics immutability for data safety
             const updatedBoard = [...prevGameBoard.map(prevRow => [...prevRow])];
-            updatedBoard[rowIdx][colIdx] = 'X';
+            updatedBoard[rowIdx][colIdx] = activePlayerSymbol;
 
             return updatedBoard;
         });
+
+        onSelectSquare();
     }
 
     return (
