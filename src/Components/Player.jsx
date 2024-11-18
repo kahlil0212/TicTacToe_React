@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Player({initialName, symbol, isActive}) {
+function Player({initialName, symbol, isActive, onNameChange}) {
 
     const [isEditing, setIsEditing] = useState(false);
     const [playerName, setPlayerName] = useState(initialName);
@@ -10,6 +10,10 @@ function Player({initialName, symbol, isActive}) {
 
         //When updating state based on prevState pass it as a function and update. Best Practice. React does make call instantly to update state
         setIsEditing((editing) => !editing);
+
+        if(isEditing){
+            onNameChange(symbol, playerName)
+        }
     };
 
     //React and Javascript automatically returns and event object back and can be used to get the value from the element is called on. This case is input element for player name
